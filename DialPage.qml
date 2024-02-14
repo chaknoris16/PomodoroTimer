@@ -44,7 +44,7 @@ Rectangle {
 
                     Layout.minimumHeight: sourceSize.height
                     Layout.minimumWidth: sourceSize.width
-                    source: "Images/PauseButton.svg"
+                    source: "qrc:/Images/PauseButton.svg"
                 }
                 onClicked: {
                     //stack.currentIndex = stack.currentIndex ? 0:1
@@ -58,7 +58,7 @@ Rectangle {
                     smooth: true
                     Layout.maximumHeight: sourceSize.height
                     Layout.maximumWidth: sourceSize.width
-                    source: "Images/StopButton.svg"
+                    source: "qrc:/Images/StopButton.svg"
                 }
                 onClicked: {
                     console.log("buttonStop is pressed")
@@ -77,7 +77,7 @@ Rectangle {
                     smooth: true
                     Layout.maximumHeight: sourceSize.height
                     Layout.maximumWidth: sourceSize.width
-                    source: "Images/ResetButton.svg"
+                    source: "qrc:/Images/ResetButton.svg"
                 }
                 onClicked: {
                     root.returnToSelector()

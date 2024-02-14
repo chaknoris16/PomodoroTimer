@@ -3,12 +3,13 @@ cmake_minimum_required(VERSION 3.16)
 project(PomodoroTimer VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
-#set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Core)
+find_package(Qt6 COMPONENTS Core Gui Quick Widgets QuickWidgets REQUIRED)
+
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -17,9 +18,9 @@ qt_add_executable(appPomodoroTimer
     timer_controller.h
     timer_controller.cpp
 
-
     dialcontroller.h
     dialcontroller.cpp
+
 )
 
 qt_add_qml_module(appPomodoroTimer
@@ -33,18 +34,11 @@ qt_add_qml_module(appPomodoroTimer
     TimeSelectorPage.qml
 
     RESOURCES resources.qrc
-    Images/Dial.svg
-    Images/DownArrow.svg
-    Images/UpArrow.svg
-    Images/PauseButton.svg
-    Images/ResetButton.svg
-    Images/StartButton.svg
-    Images/StopButton.svg
+
 
     SOURCES
     timer_controller.h
     timer_controller.cpp
-    QML_FILES testDial.qml
 )
 
 
@@ -56,9 +50,12 @@ set_target_properties(appPomodoroTimer PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-target_link_libraries(appPomodoroTimer
-    PRIVATE Qt6::Quick
-            Qt6::Core
+target_link_libraries(appPomodoroTimer PRIVATE
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Quick
+    Qt6::Widgets
+    Qt6::QuickWidgets
 )
 
 include(GNUInstallDirs)

@@ -2,6 +2,7 @@ import QtQuick 6.5
 import QtQuick.Controls 6.5
 import QtQuick.Layouts
 
+
 Item {
     id: widget
     width: 167
@@ -78,7 +79,7 @@ Item {
                         radius: 5
                         Image {
                             id: upButton
-                            source: "Images/UpArrow.svg"
+                            source: "qrc:/Images/UpArrow.svg"
                             anchors.fill: parent
                         }
                     }
@@ -101,7 +102,7 @@ Item {
                         Image {
                             anchors.fill: parent
                             id: downButton
-                            source: "Images/DownArrow.svg"
+                            source: "qrc:/Images/DownArrow.svg"
                         }
                     }
                     onHoveredChanged: buttonDown.hover = !buttonDown.hover

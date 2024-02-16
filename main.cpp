@@ -4,7 +4,7 @@
 #include "dialcontroller.h"
 #include <QQmlContext>
 #include <QObject>
-
+#include "itemmodel.h"
 int main(int argc, char *argv[])
 {
 
@@ -22,7 +22,8 @@ int main(int argc, char *argv[])
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
 
-
+    ItemModel itemModel;
+    engine.rootContext()->setContextProperty("itemModel", &itemModel);
     engine.rootContext()->setContextProperty("selector", &timeSelector);
     engine.rootContext()->setContextProperty("DialController", &dialController);
     engine.loadFromModule("PomodoroTimer", "Main");

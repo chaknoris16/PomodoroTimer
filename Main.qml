@@ -137,20 +137,23 @@ Window {
                                 anchors.left: parent.left
                                 anchors.verticalCenter: parent.verticalCenter
                                 color: "white"
-                                text: mins + " mins"
+                                text: model.mins + " mins"
                                 leftPadding: 10
                             }
-                            TextEdit {
+                            TextInput {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 anchors.verticalCenter: parent.verticalCenter
                                 color: "white"
-                                text: name
+                                text: model.name
+                                onEditingFinished: {
+                                    itemModel.updateItem(index, text);
+                                }
                             }
                             Text {
                                 anchors.right: parent.right
                                 anchors.verticalCenter: parent.verticalCenter
                                 color: "white"
-                                text: date
+                                text: model.date
                                 rightPadding: 10
                             }
                         }
@@ -160,13 +163,14 @@ Window {
                 ListView {
                     id: listView
                     anchors.fill: parent
-                    model: listModel
+                    model: itemModel
                     delegate: contactDelegate
                     focus: true
                     spacing: 5
                     leftMargin: 5
                     rightMargin: 5
                     topMargin: 5
+                    clip: true
                 }
             }
 

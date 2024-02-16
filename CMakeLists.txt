@@ -37,6 +37,7 @@ qt_add_qml_module(appPomodoroTimer
     timer_controller.h
     timer_controller.cpp
     RESOURCES resources.qrc
+    SOURCES itemmodel.h itemmodel.cpp
 )
 
 

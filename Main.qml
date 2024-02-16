@@ -26,7 +26,7 @@ Window {
             id: leftSection
             Layout.fillWidth: true
             Layout.fillHeight: true
-            spacing: 30
+            spacing: 10
 
 
             StackView {
@@ -90,24 +90,83 @@ Window {
                 //minutes: timerSelector.minutes + " min"
                 backgroundColor: "#313236"
                 onResetButtonClicked: stackView.pop(timerSelector)
-
-
-
             }
 
 
 
             Rectangle {
                 id: historyBlock
-                visible: true
                 color: "#313236"
                 radius: 7
                 Layout.fillWidth: true
                 Layout.preferredHeight: 250
                 Layout.minimumWidth: 200
                 Layout.margins: 30
-                ItemDelegate {
+
+                ListModel {
+                    id: listModel
+                    ListElement {
+                        name: "Work"
+                        mins: 5
+                        date: "15.02.2024"
+                    }
+                    ListElement {
+                        name: "Hobbi"
+                        mins: 25
+                        date: "14.02.2024"
+                    }
+                    ListElement {
+                        name: "Cook"
+                        mins: 3
+                        date: "14.02.2024"
+                    }
+                }
+                Component {
+                    id: contactDelegate
+                    Rectangle {
+                        id: elemen
+                        height: 40
+                        width: listView.width - 10
+                        color: "#201E1E"
+                        radius: 5
+
+                        Row {
+                            anchors.fill: parent
+                            spacing: 50
+                            Text {
+                                anchors.left: parent.left
+                                anchors.verticalCenter: parent.verticalCenter
+                                color: "white"
+                                text: mins + " mins"
+                                leftPadding: 10
+                            }
+                            TextEdit {
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                anchors.verticalCenter: parent.verticalCenter
+                                color: "white"
+                                text: name
+                            }
+                            Text {
+                                anchors.right: parent.right
+                                anchors.verticalCenter: parent.verticalCenter
+                                color: "white"
+                                text: date
+                                rightPadding: 10
+                            }
+                        }
+                    }
+                }
+
+                ListView {
+                    id: listView
                     anchors.fill: parent
+                    model: listModel
+                    delegate: contactDelegate
+                    focus: true
+                    spacing: 5
+                    leftMargin: 5
+                    rightMargin: 5
+                    topMargin: 5
                 }
             }
 

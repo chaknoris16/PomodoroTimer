@@ -47,7 +47,7 @@ Rectangle {
         y: 0
         width: 270
         height: 270
-        source: "qrc:/Images/Dial.svg"
+        source: "qrc:/Images.png/Dial.png"
         fillMode: Image.PreserveAspectFit
         Item {
             anchors.fill: parent

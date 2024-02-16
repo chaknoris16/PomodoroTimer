@@ -1,13 +1,20 @@
 <RCC>
     <qresource prefix="/">
-        <file>Images/Dial.svg</file>
-        <file>Images/DownArrow.svg</file>
-        <file>Images/PauseButton.svg</file>
-        <file>Images/ResetButton.svg</file>
-        <file>Images/ResetButtonPress.svg</file>
-        <file>Images/StartButton.png</file>
-        <file>Images/StartButton.svg</file>
-        <file>Images/StopButton.svg</file>
-        <file>Images/UpArrow.svg</file>
+        <file>Images.png/DownArrow.png</file>
+        <file>Images.png/MoreButton.png</file>
+        <file>Images.png/PauseButton.png</file>
+        <file>Images.png/ResetButton.png</file>
+        <file>Images.png/StartButton.png</file>
+        <file>Images.png/StopButton.png</file>
+        <file>Images.png/UpArrow.png</file>
+        <file>Images.svg/Dial.svg</file>
+        <file>Images.svg/DownArrow.svg</file>
+        <file>Images.svg/PauseButton.svg</file>
+        <file>Images.svg/ResetButton.svg</file>
+        <file>Images.svg/ResetButtonPress.svg</file>
+        <file>Images.svg/StartButton.svg</file>
+        <file>Images.svg/StopButton.svg</file>
+        <file>Images.svg/UpArrow.svg</file>
+        <file>Images.png/Dial.png</file>
     </qresource>
 </RCC>

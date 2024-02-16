@@ -79,8 +79,9 @@ Item {
                         radius: 5
                         Image {
                             id: upButton
-                            source: "qrc:/Images/UpArrow.svg"
-                            anchors.fill: parent
+                            fillMode: Image.PreserveAspectFit
+                            source: "qrc:/Images.png/UpArrow.png"
+                             anchors.centerIn: parent
                         }
                     }
                     onClicked: inputField.text = (parseInt(inputField.text) + 1).toString()
@@ -100,9 +101,9 @@ Item {
                         color: buttonDown.hover ? "#627197" : "#494f5f"
                         radius: 5
                         Image {
-                            anchors.fill: parent
+                            anchors.centerIn: parent
                             id: downButton
-                            source: "qrc:/Images/DownArrow.svg"
+                            source: "qrc:/Images.png/DownArrow.png"
                         }
                     }
                     onHoveredChanged: buttonDown.hover = !buttonDown.hover

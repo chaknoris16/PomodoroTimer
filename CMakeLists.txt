@@ -33,12 +33,10 @@ qt_add_qml_module(appPomodoroTimer
     DialPage.qml
     TimeSelectorPage.qml
 
-    RESOURCES resources.qrc
-
-
     SOURCES
     timer_controller.h
     timer_controller.cpp
+    RESOURCES resources.qrc
 )
 
 

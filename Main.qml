@@ -102,7 +102,7 @@ Window {
                 visible: true
                 color: "#313236"
                 radius: 7
-                Layout.preferredWidth: 250
+                Layout.fillWidth: true
                 Layout.preferredHeight: 250
                 Layout.minimumWidth: 200
                 Layout.margins: 30

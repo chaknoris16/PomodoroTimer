@@ -47,7 +47,7 @@ Rectangle {
         y: 0
         width: 270
         height: 270
-        source: "qrc:/Images.png/Dial.png"
+        source: "qrc:/ui/Images.png/Dial.png"
         fillMode: Image.PreserveAspectFit
         Item {
             anchors.fill: parent
@@ -73,21 +73,4 @@ Rectangle {
 
     }
 
-
-
-    // DropShadow {
-    //     anchors.fill: img_dial
-    //     anchors.leftMargin: 0
-    //     anchors.rightMargin: 0
-    //     anchors.topMargin: 8
-    //     anchors.bottomMargin: -8
-    //     horizontalOffset: 5
-    //     verticalOffset: 5
-    //     radius: 5
-    //     samples: 16
-    //     color: "#80000000"
-    // }
-    StateGroup {
-        id: stateGroup
-    }
 }

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(PomodoroTimer VERSION 0.1 LANGUAGES CXX)
+project(PomodoroTimer VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -8,18 +8,13 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-find_package(Qt6 COMPONENTS Core Gui Quick Widgets QuickWidgets REQUIRED)
+find_package(Qt6 COMPONENTS Core Gui Quick Widgets Sql Test REQUIRED)
 
 
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appPomodoroTimer
-    main.cpp
-    timer_controller.h
-    timer_controller.cpp
-
-    dialcontroller.h
-    dialcontroller.cpp
+    src/main.cpp
 
 )
 
@@ -27,17 +22,31 @@ qt_add_qml_module(appPomodoroTimer
     URI PomodoroTimer
     VERSION 1.0
 
-    QML_FILES Main.qml
-    MinutesSelector.qml
-    MyDial.qml
-    DialPage.qml
-    TimeSelectorPage.qml
+    QML_FILES
+    ui/Main.qml
+    ui/MinutesSelector.qml
+    ui/MyDial.qml
+    ui/DialPage.qml
+    ui/TimeSelectorPage.qml
+    ui/PopupMessage.qml
 
     SOURCES
-    timer_controller.h
-    timer_controller.cpp
+    include/dialcontroller.h
+    src/dialcontroller.cpp
+
+    include/db_manager.h
+    src/db_manager.cpp
+
+    include/itemmodel.h
+    src/itemmodel.cpp
+
+    include/timer_controller.h
+    src/timer_controller.cpp
+
+    include/ListItem.h
+    include/i_db_manager.h
+
     RESOURCES resources.qrc
-    SOURCES itemmodel.h itemmodel.cpp
 )
 
 
@@ -50,11 +59,12 @@ set_target_properties(appPomodoroTimer PROPERTIES
 )
 
 target_link_libraries(appPomodoroTimer PRIVATE
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Quick
-    Qt6::Widgets
-    Qt6::QuickWidgets
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Gui
+    Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Sql
+    Qt${QT_VERSION_MAJOR}::Test
 )
 
 include(GNUInstallDirs)
@@ -63,3 +73,6 @@ install(TARGETS appPomodoroTimer
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+enable_testing()
+add_subdirectory(tests)

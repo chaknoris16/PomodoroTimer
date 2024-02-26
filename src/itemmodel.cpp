@@ -1,4 +1,4 @@
-#include "itemmodel.h"
+#include "../include/itemmodel.h"
 #include <QVariant>
 ItemModel::ItemModel(QObject *parent)
 : QAbstractListModel(parent)
@@ -46,6 +46,22 @@ QVariant ItemModel::data(const QModelIndex &index, int role) const
     }
 }
 
+bool ItemModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    if (row < 0 || row + count > rowCount(parent)) {
+        return false;
+    }
+    beginRemoveRows(parent, row, row + count - 1);
+    endRemoveRows();
+    emit deletingElement(row);
+    return true;
+}
+
+void ItemModel::setItemsData(const QList<Item> &items)
+{
+    this->m_items = items;
+}
+
 QHash<int, QByteArray> ItemModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
@@ -57,13 +73,12 @@ QHash<int, QByteArray> ItemModel::roleNames() const
 
 void ItemModel::updateItem(int index, const QString &name)
 {
-    if (index < 0 || index >= m_items.count())
+    if (index < 0 || index >= m_items.count()) {
         return;
-
+    }
     Item &item = m_items[index];
     item.name = name;
 
-    // Оповістіть про оновлення даних
     QModelIndex modelIndex = createIndex(index, 0);
     qDebug() << "New name:" << name;
     emit dataChanged(modelIndex, modelIndex, {Qt::UserRole + 2});

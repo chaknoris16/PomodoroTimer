@@ -10,6 +10,8 @@ Item {
     property int time: parseInt(inputField.text)
     property alias defTime: inputField.text
     property bool hover: false
+    property int minMinsNum: 5
+    property int maxMinsNum: 240
     Rectangle {
         id: widgetBackground
         width: widget.width
@@ -27,8 +29,8 @@ Item {
                 color: "#eaeaea"
                 selectByMouse: true
 
-                //onHoverChanged: widget.hover = !widget.hover
-                text: defTime
+
+                text: control.minutes
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 selectionColor: "#e32091c1"
@@ -36,30 +38,26 @@ Item {
                 font.pixelSize: 35
                 font.family: "SF Pro Text"
                 font.bold: true
-
-                validator: IntValidator { bottom: 5; top: 250 }
-
-                onTextChanged: control.setMinutes(parseInt(text))
                 onEditingFinished: control.setMinutes(parseInt(text))
+                validator: IntValidator { bottom: minMinsNum; top: maxMinsNum }
 
-                MouseArea {
-                    anchors.fill: parent
-                    propagateComposedEvents: true
+
+                WheelHandler {
                     onWheel: {
-                        if (wheel.angleDelta.y > 0) {
+                        wheelChangingHandler(event.angleDelta.y)
+                    }
 
-                            inputField.text = (parseInt(inputField.text) + 1).toString();
+                    function wheelChangingHandler(delta) {
+                        if (delta > 0) {
+                            control.setMinutes(control.minutes + 1)
                         } else {
-
-                            inputField.text = (parseInt(inputField.text) - 1).toString();
+                            control.setMinutes(control.minutes - 1)
                         }
                     }
                 }
-
             }
 
             Column {
-                anchors.right: parent.right
                 width: widget.width * 0.28
                 height: widget.height
                 Layout.fillHeight: true
@@ -80,22 +78,23 @@ Item {
                         Image {
                             id: upButton
                             fillMode: Image.PreserveAspectFit
-                            source: "qrc:/Images.png/UpArrow.png"
+                            source: "qrc:/ui/Images.png/UpArrow.png"
                              anchors.centerIn: parent
                         }
                     }
-                    onClicked: inputField.text = (parseInt(inputField.text) + 1).toString()
+                    onClicked: control.setMinutes(control.minutes + 1)
                     onHoveredChanged: buttonUp.hover = !buttonUp.hover
                 }
 
                 Button {
                     id: buttonDown
+                    property bool hover: false
+                    property color buttonColor: "#494f5f"
                     width: widget.width * 0.28
                     height: widget.height / 2
                     hoverEnabled: true
                     Layout.fillHeight: true
-                    property bool hover: false
-                    property color buttonColor: "#494f5f"
+
                     Rectangle {
                         anchors.fill: parent
                         color: buttonDown.hover ? "#627197" : "#494f5f"
@@ -103,14 +102,14 @@ Item {
                         Image {
                             anchors.centerIn: parent
                             id: downButton
-                            source: "qrc:/Images.png/DownArrow.png"
+                            source: "qrc:/ui/Images.png/DownArrow.png"
                         }
                     }
                     onHoveredChanged: buttonDown.hover = !buttonDown.hover
-                    onClicked: inputField.text = (parseInt(inputField.text) - 1).toString()
+                    onClicked: control.setMinutes(control.minutes - 1)
                 }
             }
         }
-
     }
+
 }

@@ -1,4 +1,4 @@
-#include "dialcontroller.h"
+#include "../include/dialcontroller.h"
 
 DialController::DialController(QObject *parent)
     : QObject{parent}

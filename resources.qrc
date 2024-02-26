@@ -1,20 +1,23 @@
 <RCC>
     <qresource prefix="/">
-        <file>Images.png/DownArrow.png</file>
-        <file>Images.png/MoreButton.png</file>
-        <file>Images.png/PauseButton.png</file>
-        <file>Images.png/ResetButton.png</file>
-        <file>Images.png/StartButton.png</file>
-        <file>Images.png/StopButton.png</file>
-        <file>Images.png/UpArrow.png</file>
-        <file>Images.svg/Dial.svg</file>
-        <file>Images.svg/DownArrow.svg</file>
-        <file>Images.svg/PauseButton.svg</file>
-        <file>Images.svg/ResetButton.svg</file>
-        <file>Images.svg/ResetButtonPress.svg</file>
-        <file>Images.svg/StartButton.svg</file>
-        <file>Images.svg/StopButton.svg</file>
-        <file>Images.svg/UpArrow.svg</file>
-        <file>Images.png/Dial.png</file>
+        <file>ui/Images.png/AddTask.png</file>
+        <file>ui/Images.png/delete 1.png</file>
+        <file>ui/Images.png/Dial.png</file>
+        <file>ui/Images.png/DownArrow.png</file>
+        <file>ui/Images.png/MoreButton.png</file>
+        <file>ui/Images.png/PauseButton.png</file>
+        <file>ui/Images.png/ResetButton.png</file>
+        <file>ui/Images.png/StartButton.png</file>
+        <file>ui/Images.png/StopButton.png</file>
+        <file>ui/Images.png/UpArrow.png</file>
+        <file>ui/Images.svg/delete.svg</file>
+        <file>ui/Images.svg/Dial.svg</file>
+        <file>ui/Images.svg/DownArrow.svg</file>
+        <file>ui/Images.svg/PauseButton.svg</file>
+        <file>ui/Images.svg/ResetButton.svg</file>
+        <file>ui/Images.svg/ResetButtonPress.svg</file>
+        <file>ui/Images.svg/StartButton.svg</file>
+        <file>ui/Images.svg/StopButton.svg</file>
+        <file>ui/Images.svg/UpArrow.svg</file>
     </qresource>
 </RCC>

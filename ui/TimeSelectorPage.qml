@@ -35,7 +35,7 @@ Rectangle {
                 id: buttonStartImg
                 fillMode: Image.PreserveAspectFit
 
-                source: "qrc:/Images.png/StartButton.png"
+                source: "qrc:/ui/Images.png/StartButton.png"
             }
 
             onClicked: {

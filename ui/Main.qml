@@ -11,6 +11,7 @@ Window {
     color: "#232732"
     title: "TestTimer"
 
+
     RowLayout {
         anchors.fill: parent
 
@@ -78,7 +79,7 @@ Window {
                 id: timerSelector
                 backgroundColor: "#313236"
                 onStartTimer: {
-                    dial.controller.startDial(time)
+                    dial.controller.startDial(minutes)
                     stackView.push(dial)
                 }
 
@@ -87,7 +88,6 @@ Window {
             DialPage {
                 id: dial
                 visible: false
-                //minutes: timerSelector.minutes + " min"
                 backgroundColor: "#313236"
                 onResetButtonClicked: stackView.pop(timerSelector)
             }
@@ -102,59 +102,106 @@ Window {
                 Layout.preferredHeight: 250
                 Layout.minimumWidth: 200
                 Layout.margins: 30
+                clip: true
 
-                ListModel {
-                    id: listModel
-                    ListElement {
-                        name: "Work"
-                        mins: 5
-                        date: "15.02.2024"
+                Rectangle {
+                    id: listViewHeader
+                    height: 35
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    color: "#201E1E"
+                    radius: 7
+
+                    Rectangle {
+                        //This rectangle is to cover the bottom curves.
+                        height: parent.radius
+                        color: parent.color
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
                     }
-                    ListElement {
-                        name: "Hobbi"
-                        mins: 25
-                        date: "14.02.2024"
-                    }
-                    ListElement {
-                        name: "Cook"
-                        mins: 3
-                        date: "14.02.2024"
+
+                    Button {
+                        id: addRecord
+                        width: buttonAddRecordImg.sourceSize.width
+                        height: buttonAddRecordImg.sourceSize.heigh
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 10
+
+                        background: Image {
+                            id: buttonAddRecordImg
+                            fillMode: Image.PreserveAspectFit
+
+                            source: "qrc:/ui/Images.png/AddTask.png"
+                        }
+                        onClicked: {
+                            console.log("The button 'AddRecord' is pressed")
+                        }
                     }
                 }
+
                 Component {
                     id: contactDelegate
                     Rectangle {
                         id: elemen
                         height: 40
-                        width: listView.width - 10
+                        width: listView.width - 30
                         color: "#201E1E"
                         radius: 5
-
-                        Row {
+                        RowLayout {
                             anchors.fill: parent
-                            spacing: 50
                             Text {
-                                anchors.left: parent.left
-                                anchors.verticalCenter: parent.verticalCenter
+                                id: minsText
+                                Layout.alignment: Qt.AlignVCenter
                                 color: "white"
                                 text: model.mins + " mins"
                                 leftPadding: 10
                             }
                             TextInput {
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                anchors.verticalCenter: parent.verticalCenter
+                                id: nameText
+                                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                                 color: "white"
                                 text: model.name
+                                horizontalAlignment: Text.AlignHCenter
+                                Layout.fillWidth: true
                                 onEditingFinished: {
                                     itemModel.updateItem(index, text);
+                                    console.log(index)
                                 }
                             }
                             Text {
-                                anchors.right: parent.right
-                                anchors.verticalCenter: parent.verticalCenter
+                                id: dateText
+                                Layout.alignment: Qt.AlignVCenter
                                 color: "white"
                                 text: model.date
                                 rightPadding: 10
+                            }
+
+                            Button {
+                                id: deleteRecordButton
+                                visible: mouse.hovered
+                                Layout.alignment: Qt.AlignVCenter
+                                width: delRecordImg.sourceSize.width
+                                height: delRecordImg.sourceSize.heigh
+                                scale: 0.7
+                                background: Image {
+                                    id: delRecordImg
+                                    fillMode: Image.PreserveAspectFit
+                                    source: "qrc:/ui/Images.png/delete 1.png"
+                                }
+
+                                onClicked: {
+                                    console.log("The button 'DeleteRecord' is pressed")
+                                    itemModel.removeRows(index, 1)
+                                }
+                            }
+
+                            HoverHandler {
+                                id: mouse
+                                acceptedDevices: PointerDevice.Mouse
+                                cursorShape: Qt.PointingHandCursor
                             }
                         }
                     }
@@ -162,15 +209,27 @@ Window {
 
                 ListView {
                     id: listView
-                    anchors.fill: parent
+                    anchors {
+                        left: historyBlock.left
+                        right: historyBlock.right
+                        top: listViewHeader.bottom
+                        bottom: historyBlock.bottom
+                    }
                     model: itemModel
                     delegate: contactDelegate
                     focus: true
                     spacing: 5
-                    leftMargin: 5
-                    rightMargin: 5
+                    leftMargin: 15
+                    rightMargin: 15
                     topMargin: 5
                     clip: true
+
+
+                    ScrollBar.vertical: ScrollBar {
+                        policy: ScrollBar.AlwaysOn
+                        size: listView.contentHeight / listView.height
+                    }
+
                 }
             }
 

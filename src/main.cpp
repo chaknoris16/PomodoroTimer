@@ -1,10 +1,15 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "timer_controller.h"
-#include "dialcontroller.h"
 #include <QQmlContext>
 #include <QObject>
-#include "itemmodel.h"
+#include <QScopedPointer>
+#include "../include/timer_controller.h"
+#include "../include/dialcontroller.h"
+#include "../include/itemmodel.h"
+#include "../include/i_db_manager.h"
+#include "../include/db_manager.h"
+#include <memory>
+
 int main(int argc, char *argv[])
 {
 
@@ -23,10 +28,15 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
 
     ItemModel itemModel;
+    QScopedPointer<IDBManager> dbManager(new DBManager());
+    //IDBManager* dbManager = new DBManager();
+    //itemModel.setItemsData(dbManager.data()->getData());
     engine.rootContext()->setContextProperty("itemModel", &itemModel);
     engine.rootContext()->setContextProperty("selector", &timeSelector);
     engine.rootContext()->setContextProperty("DialController", &dialController);
     engine.loadFromModule("PomodoroTimer", "Main");
+
+
 
     return app.exec();
 }

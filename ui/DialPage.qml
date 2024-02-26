@@ -44,7 +44,7 @@ Rectangle {
 
                     Layout.minimumHeight: sourceSize.height
                     Layout.minimumWidth: sourceSize.width
-                    source: "qrc:/Images.png/PauseButton.png"
+                    source: "qrc:/ui/Images.png/PauseButton.png"
                 }
                 onClicked: {
                     //stack.currentIndex = stack.currentIndex ? 0:1
@@ -58,7 +58,7 @@ Rectangle {
                     smooth: true
                     Layout.maximumHeight: sourceSize.height
                     Layout.maximumWidth: sourceSize.width
-                    source: "qrc:/Images.png/StopButton.png"
+                    source: "qrc:/ui/Images.png/StopButton.png"
                 }
                 onClicked: {
                     console.log("buttonStop is pressed")
@@ -77,7 +77,7 @@ Rectangle {
                     smooth: true
                     Layout.maximumHeight: sourceSize.height
                     Layout.maximumWidth: sourceSize.width
-                    source: "qrc:/Images.png/ResetButton.png"
+                    source: "qrc:/ui/Images.png/ResetButton.png"
                 }
                 onClicked: {
                     root.returnToSelector()
@@ -90,8 +90,12 @@ Rectangle {
             onDivisionsColorChanged: {
                 dial.setDivisionColor(divNumber, divState)
             }
-            onDialTimerTimeout: root.returnToSelector()
+            onDialTimerTimeout: {
+                root.returnToSelector()
+
+            }
         }
+
     }
     function returnToSelector() {
         buttonStop.visible = true
